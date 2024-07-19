@@ -1,0 +1,6 @@
+model User {
+  @@map("Users")
+
+  id String @id @default(uuid())
+  userName String
+}
