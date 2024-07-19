@@ -1,19 +1,10 @@
-import { ApolloServer, gql } from 'apollo-server';
+import { ApolloServer } from 'apollo-server';
+import { importSchema } from 'graphql-import';
+import resolvers from './graphql/resolver/index';
 
 const server = new ApolloServer({
-  typeDefs: gql`
-    type Query {
-      hello: String
-    }
-  `,
-
-  resolvers: {
-    Query: {
-      hello() {
-        return 'Hello Wold';
-      },
-    },
-  },
+  typeDefs: importSchema(require.resolve('./graphql/schema/index.graphql')),
+  resolvers,
 });
 
 server
