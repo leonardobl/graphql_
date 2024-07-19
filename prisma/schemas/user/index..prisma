@@ -1,6 +1,6 @@
 model User {
-  @@map("Users")
+  @@map("users")
 
   id String @id @default(uuid())
-  userName String
+  userName String @unique
 }

@@ -1,0 +1,3 @@
+type Mutation {
+  postUser(data: UserForm): User!
+}

@@ -1,7 +1,7 @@
-import { Hello } from '../Hello';
+import { UserQuery } from '../User';
 
 export default {
   Query: {
-    ...Hello,
+    ...UserQuery,
   },
 };
