@@ -1,7 +1,7 @@
+import { Hello } from '../Hello';
+
 export default {
   Query: {
-    hello() {
-      return 'Teste';
-    },
+    ...Hello,
   },
 };
