@@ -1,6 +1,7 @@
-import { Prisma, PrismaClient } from '@prisma/client';
+import { Prisma } from '@prisma/client';
 import { IGetUserByIdArgs, IUserForm } from '../../../types/user';
 import z from 'zod';
+import { IAppContext } from '../../../types/context';
 
 const UserFormSchema = z.object({
   userName: z
@@ -9,11 +10,9 @@ const UserFormSchema = z.object({
     .max(100, { message: 'userName must be less than 100 characters' }),
 });
 
-const prisma = new PrismaClient();
-
 const UserQuery = {
-  async getUsers() {
-    const users = await prisma.user.findMany({
+  async getUsers(_: unknown, __: unknown, ctx: IAppContext) {
+    const users = await ctx.prisma.user.findMany({
       include: {
         posts: true,
       },
@@ -21,8 +20,8 @@ const UserQuery = {
     return users;
   },
 
-  async getUserById(_: unknown, { id }: IGetUserByIdArgs) {
-    const user = await prisma.user.findUnique({
+  async getUserById(_: unknown, { id }: IGetUserByIdArgs, ctx: IAppContext) {
+    const user = await ctx.prisma.user.findUnique({
       where: { id },
       include: {
         posts: true,
@@ -33,10 +32,10 @@ const UserQuery = {
 };
 
 const UserMutation = {
-  async postUser(_: unknown, { data }: IUserForm) {
+  async postUser(_: unknown, { data }: IUserForm, ctx: IAppContext) {
     try {
       UserFormSchema.parse(data);
-      const user = await prisma.user.create({
+      const user = await ctx.prisma.user.create({
         data,
       });
       return user;
