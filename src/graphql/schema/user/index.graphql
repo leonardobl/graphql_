@@ -7,14 +7,15 @@ type User {
   indexRef: Int
   token: String
   createdAt: String
+  posts: [Post]
 }
 
 input UserForm {
-  id: ID
-  userName: String
-  firstName: String
-  lastName: String
+  id: ID!
+  userName: String!
+  firstName: String!
+  lastName: String!
   passwordHash: String
-  indexRef: Int
-  token: String
+  indexRef: Int!
+  token: String!
 }

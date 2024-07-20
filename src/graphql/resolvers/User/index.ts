@@ -9,18 +9,25 @@ const UserFormSchema = z.object({
     .max(100, { message: 'userName must be less than 100 characters' }),
 });
 
-const prisma = new PrismaClient({
-  log: ['query'],
-});
+const prisma = new PrismaClient();
 
 const UserQuery = {
   async getUsers() {
-    const users = await prisma.user.findMany();
+    const users = await prisma.user.findMany({
+      include: {
+        posts: true,
+      },
+    });
     return users;
   },
 
   async getUserById(_: unknown, { id }: IGetUserByIdArgs) {
-    const user = await prisma.user.findUnique({ where: { id } });
+    const user = await prisma.user.findUnique({
+      where: { id },
+      include: {
+        posts: true,
+      },
+    });
     return user;
   },
 };
@@ -30,7 +37,7 @@ const UserMutation = {
     try {
       UserFormSchema.parse(data);
       const user = await prisma.user.create({
-        data: { userName: data.userName },
+        data,
       });
       return user;
     } catch (error) {

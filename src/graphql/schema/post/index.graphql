@@ -1,0 +1,16 @@
+type Post {
+  id: String
+  title: String
+  body: String
+  userId: String
+  indexRef: Int
+  createdAt: String
+}
+
+type PostForm {
+  id: String
+  title: String
+  body: String
+  userId: String
+  indexRef: Int
+}
