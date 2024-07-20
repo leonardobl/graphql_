@@ -1,6 +1,12 @@
 model User {
   @@map("users")
 
-  id String @id @default(uuid())
-  userName String @unique
+  id String @id 
+  firstName String 
+  lastName String 
+  passwordHash String?
+  userName String
+  indexRef Int 
+  token String?
+  createdAt DateTime @default(now()) 
 }

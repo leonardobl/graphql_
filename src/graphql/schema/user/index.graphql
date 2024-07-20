@@ -1,8 +1,20 @@
 type User {
   id: ID
   userName: String
+  firstName: String
+  lastName: String
+  passwordHash: String
+  indexRef: Int
+  token: String
+  createdAt: String
 }
 
 input UserForm {
-  userName: String!
+  id: ID
+  userName: String
+  firstName: String
+  lastName: String
+  passwordHash: String
+  indexRef: Int
+  token: String
 }

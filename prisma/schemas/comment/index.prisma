@@ -1,0 +1,11 @@
+model Comment {
+  @@map("comments")
+
+  id String @id
+  comment String
+  postId String
+  userId String
+  indexRef Int
+  createdAt DateTime @default(now()) 
+
+}

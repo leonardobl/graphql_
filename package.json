@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "docker compose up -d && tsx watch --env-file=.env src/index.ts",
-    "gen:schema": "find prisma -name '*.prisma' -exec cat {} + > /tmp/schema_temp.prisma && mv /tmp/schema_temp.prisma prisma/schema.prisma && prisma format"
+    "gen:schema": "find prisma -name '*.prisma' -exec cat {} + > /tmp/schema_temp.prisma && mv /tmp/schema_temp.prisma prisma/schema.prisma && prisma format",
+    "seed": "ts-node prisma/seed.ts"
   },
   "keywords": [],
   "author": "Leonardo Lima <leonardo.b.lima1@gmail.com>",
