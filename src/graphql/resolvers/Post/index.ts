@@ -1,20 +1,22 @@
-import { PrismaClient } from '@prisma/client';
+import { IAppContext } from '../../../types/context';
 import { IGetPostByIdArgs, IGetPostOfUserByIdArgs } from '../../../types/post';
 
-const prisma = new PrismaClient();
-
 const PostQuery = {
-  async getPosts() {
-    const posts = await prisma.post.findMany();
+  async getPosts(_: unknown, __: unknown, ctx: IAppContext) {
+    const posts = await ctx.prisma.post.findMany();
     return posts;
   },
-  async getPostById(_: unknown, { id }: IGetPostByIdArgs) {
-    const post = await prisma.post.findUnique({ where: { id } });
+  async getPostById(_: unknown, { id }: IGetPostByIdArgs, ctx: IAppContext) {
+    const post = await ctx.prisma.post.findUnique({ where: { id } });
     return post;
   },
 
-  async getPostsOfUserById(_: unknown, { id }: IGetPostOfUserByIdArgs) {
-    const posts = await prisma.post.findMany({ where: { userId: id } });
+  async getPostsOfUserById(
+    _: unknown,
+    { id }: IGetPostOfUserByIdArgs,
+    ctx: IAppContext,
+  ) {
+    const posts = await ctx.prisma.post.findMany({ where: { userId: id } });
     return posts;
   },
 };
