@@ -1,0 +1,8 @@
+type Comment {
+  id: ID
+  comment: String
+  userId: String
+  postId: String
+  indexRef: Int
+  createdAt: String
+}

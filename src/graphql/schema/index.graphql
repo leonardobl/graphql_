@@ -2,3 +2,4 @@
 #import Mutation from "./Mutation.graphql";
 #import User from "./user/index.graphql";
 #import Post from "./post/index.graphql";
+#import Post from "./comment/index.graphql";

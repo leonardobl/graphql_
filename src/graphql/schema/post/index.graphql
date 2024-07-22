@@ -5,6 +5,7 @@ type Post {
   userId: String
   indexRef: Int
   createdAt: String
+  comments: [Comment]
 }
 
 type PostForm {

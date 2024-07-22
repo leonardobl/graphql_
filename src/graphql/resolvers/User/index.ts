@@ -14,7 +14,11 @@ const UserQuery = {
   async getUsers(_: unknown, __: unknown, ctx: IAppContext) {
     const users = await ctx.prisma.user.findMany({
       include: {
-        posts: true,
+        posts: {
+          include: {
+            comments: true,
+          },
+        },
       },
     });
     return users;
@@ -24,7 +28,11 @@ const UserQuery = {
     const user = await ctx.prisma.user.findUnique({
       where: { id },
       include: {
-        posts: true,
+        posts: {
+          include: {
+            comments: true,
+          },
+        },
       },
     });
     return user;

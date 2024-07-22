@@ -33,6 +33,7 @@ model Post {
   indexRef Int
   createdAt DateTime @default(now()) 
   user User @relation(fields: [userId], references: [id])
+  comments Comment[]
 }
 
 
@@ -45,7 +46,6 @@ model Comment {
   userId String
   indexRef Int
   createdAt DateTime @default(now()) 
-
+  post Post @relation(fields: [postId], references: [id])
 }
-
 
